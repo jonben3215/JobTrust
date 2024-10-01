@@ -1,0 +1,126 @@
+.HomePage{
+    text-decoration: none;
+}
+nav {
+    background-color: black;
+    height: 80px;
+    position: fixed; /* This sticks the nav to the top */
+    top: 0;
+    left:0;
+    width: 100%;
+    z-index: 1000; /* Keeps the nav above other content */
+    display: flex;
+    align-items: center; /* Centers content vertically within the nav */
+    padding: 0 20px; /* Optional padding inside the nav */;
+}
+
+ul {
+    list-style: none;
+    display: flex;
+    margin: 0;
+    padding: 0;
+    margin-left: 75%;
+}
+
+li{
+    margin-left: 20px;
+}
+
+.nav-SignUp {
+    background-color: green;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.nav-Login {
+    background-color: blue;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.nav-SignUp, .nav-Login {
+    transition: transform 0.3s ease, background-color 0.3s ease, color 0.3s ease;
+}
+
+.nav-SignUp:hover {
+    background-color: #66ff66; /* Optional hover effect */
+    color: black;
+    transform: scale(1.2);
+}
+
+.nav-Login:hover {
+    background-color: #3399FF; /* Optional hover effect */
+    color: black;
+    transform: scale(1.2);
+}
+
+h2 {
+    font-size: 30px;
+    animation: rainbowText 5s infinite linear; /* Apply animation */
+}
+
+@keyframes rainbowText {
+    0% {
+        color: red;
+    }
+    16% {
+        color: orange;
+    }
+    33% {
+        color: yellow;
+    }
+    50% {
+        color: green;
+    }
+    66% {
+        color: blue;
+    }
+    83% {
+        color: indigo;
+    }
+    100% {
+        color: violet;
+    }
+}
+
+@media (min-width: 0px) and (max-width: 1080px) {
+    nav {
+        height: auto;
+        padding: 10px;
+    }
+
+    ul {
+        align-items: center;
+        width: 100%;
+        padding: 0;
+        margin-left: 30%;
+    }
+
+    li {
+        margin-left: 10px;
+        margin-top: 10px;
+    }
+
+    h2 {
+        font-size: 24px;
+    }
+}
+
+@media (max-width: 480px) {
+    .nav-SignUp, .nav-Login {
+        font-size: 14px;
+        padding: 8px 16px;
+    }
+
+    h2 {
+        font-size: 20px;
+    }
+}
