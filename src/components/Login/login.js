@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
-import './signup.css';
+import './login.css';
 import { Link } from 'react-router-dom';
 
-const Signup = () => {
+const Login = () => {
     const [passwordVisible, setPasswordVisible] = useState(false);
     const [rePasswordVisible, setRePasswordVisible] = useState(false);
     const [username, setUsername] = useState('');
@@ -14,10 +14,6 @@ const Signup = () => {
 
     const togglePasswordVisibility = () => {
         setPasswordVisible(!passwordVisible);
-    };
-
-    const toggleRePasswordVisibility = () => {
-        setRePasswordVisible(!rePasswordVisible);
     };
 
     const handleSubmit = async (e) => {
@@ -30,7 +26,7 @@ const Signup = () => {
 
         try {
             const response = await fetch('http://localhost:5000/signup', {
-                method: 'POST',
+                method: 'GET',
                 headers: {
                     'Content-Type': 'application/json'
                 },
@@ -59,7 +55,7 @@ const Signup = () => {
 
     return (
         <div>
-            <h1>Sign Up</h1>
+            <h1>Login</h1>
             <form onSubmit={handleSubmit}>
                 <label>Username</label>
                 <input 
@@ -67,15 +63,6 @@ const Signup = () => {
                     name="username" 
                     value={username}
                     onChange={(e) => setUsername(e.target.value)}
-                    required 
-                />
-
-                <label>Email</label>
-                <input 
-                    type="email" 
-                    name="email" 
-                    value={email}
-                    onChange={(e) => setEmail(e.target.value)}
                     required 
                 />
 
@@ -95,33 +82,13 @@ const Signup = () => {
                     />
                 </div>
 
-                <label>Confirm Password</label>
-                <div className="password-container">
-                    <input 
-                        type={rePasswordVisible ? "text" : "password"} 
-                        name="Confirm_Password"
-                        value={rePassword}
-                        onChange={(e) => setRePassword(e.target.value)}
-                        required 
-                    />
-                    <FontAwesomeIcon 
-                        icon={rePasswordVisible ? faEyeSlash : faEye} 
-                        onClick={toggleRePasswordVisibility} 
-                        className="eye-icon"
-                    />
-                </div>
                 <button type="submit">Sign Up</button>
-                <Link to="/login">
-                    <button className='LoginButt'>Login</button>
-                </Link>
                 <Link to="/">
                 <button className='HomeButt'>Home</button>
                 </Link>
-          
-                
             </form>
         </div>
     );
 };
 
-export default Signup;
+export default Login;

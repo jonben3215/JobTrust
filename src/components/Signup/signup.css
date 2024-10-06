@@ -66,6 +66,23 @@ button:active {
     background-color: #00408b;
 }
 
+.password-Container
+{
+    position: relative;
+}
+
+.password-Container input{
+    padding-right: 40px;
+    width: 100%;
+}
+
+.eye-icon {
+    position: relative;
+    left: 90%;
+    bottom: 30px;
+    cursor: pointer;
+}
+    
 @media (max-width: 500px) {
     input, label {
         padding: 15px;
@@ -74,5 +91,45 @@ button:active {
     form {
         padding: 15px;
         max-width: 300px;
+        position: relative;
+        right: 4%;
     }
+}
+
+.HomeButt {
+    background-color: #90BF49; /* Yellow for the Home button */
+    color: white; /* Text color for contrast */
+    width: 100%;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    font-size: 1rem;
+    cursor: pointer;
+    text-align: center;
+    transition: background-color 0.3s ease;
+}
+
+/* Login Button */
+.LoginButt {
+    background-color: #F2D0E9; /* Green for the Login button */
+    color: black;
+    width: 100%;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    font-size: 1rem;
+    cursor: pointer;
+    text-align: center;
+    transition: background-color 0.3s ease;
+}
+
+/* Hover effect for the Home button */
+.HomeButt:hover {
+    background-color: #F2F2F2; /* Pink on hover */
+    color:black;
+}
+
+/* Hover effect for the Login button */
+.LoginButt:hover {
+    background-color: #F27289; /* Blue on hover */
 }

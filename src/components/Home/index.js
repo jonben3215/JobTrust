@@ -16,7 +16,7 @@ const Home = () => {
           </Link>
         </li>
         <li>
-          <Link to="/signup">
+          <Link to="/login">
             <button className="nav-Login">Login</button>
           </Link>
         </li>
