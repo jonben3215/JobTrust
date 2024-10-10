@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
 import './signup.css';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 const Signup = () => {
     const [passwordVisible, setPasswordVisible] = useState(false);
@@ -11,6 +11,8 @@ const Signup = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [rePassword, setRePassword] = useState('');
+
+    const navigate = useNavigate();
 
     const togglePasswordVisibility = () => {
         setPasswordVisible(!passwordVisible);
@@ -44,6 +46,8 @@ const Signup = () => {
                 setEmail('');
                 setPassword('');
                 setRePassword('');
+                navigate('/login'); 
+
             } else {
                 alert(data); // Error message from the server
                 setUsername('');

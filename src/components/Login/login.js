@@ -2,70 +2,62 @@ import React, { useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
 import './login.css';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 const Login = () => {
     const [passwordVisible, setPasswordVisible] = useState(false);
-    const [rePasswordVisible, setRePasswordVisible] = useState(false);
-    const [username, setUsername] = useState('');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
-    const [rePassword, setRePassword] = useState('');
+    const navigate = useNavigate();
 
     const togglePasswordVisibility = () => {
         setPasswordVisible(!passwordVisible);
     };
 
-    const handleSubmit = async (e) => {
+    const fetchUser = async (e) => {
         e.preventDefault(); // Prevent default form submission
 
-        if (password !== rePassword) {
-            alert('Passwords do not match');
-            return;
-        }
-
-        try {
-            const response = await fetch('http://localhost:5000/signup', {
-                method: 'GET',
+        try{
+            const response = await fetch('http://localhost:5000/login', {
+                method: 'POST', // Use POST for security reasons
                 headers: {
                     'Content-Type': 'application/json'
                 },
-                body: JSON.stringify({ username, email, password })
+                body: JSON.stringify({ email, password }) // Send email and password to the server
             });
 
             const data = await response.json();
-            if (response.ok) {
-                alert(data.message); // Successful signup message
-                setUsername('');
+            if(response.ok)
+            {
+                alert(data.message); // Successful login message
                 setEmail('');
                 setPassword('');
-                setRePassword('');
-            } else {
-                alert(data); // Error message from the server
-                setUsername('');
-                setEmail('');
-                setPassword('');
-                setRePassword('');
+                navigate('/main')
+                localStorage.setItem('username', data.username);
             }
-        } catch (error) {
+            else{
+                alert(data);
+                setPassword('');
+            }
+        }
+        catch (error){
             console.error('Error:', error);
-            alert('Error during signup, please try again later');
+            alert('Error during login, please try again later');
         }
     };
 
     return (
         <div>
             <h1>Login</h1>
-            <form onSubmit={handleSubmit}>
-                <label>Username</label>
+            <form onSubmit={fetchUser}>
+            <label>Email</label>
                 <input 
-                    type="text" 
-                    name="username" 
-                    value={username}
-                    onChange={(e) => setUsername(e.target.value)}
+                    type="email" 
+                    name="email" 
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
                     required 
                 />
-
                 <label>Password</label>
                 <div className="password-container">
                     <input 
@@ -82,7 +74,10 @@ const Login = () => {
                     />
                 </div>
 
-                <button type="submit">Sign Up</button>
+                <button type="submit">Login</button>
+                <Link to="/signup">
+                    <button className='SignButt'>Sign Up</button>
+                </Link>
                 <Link to="/">
                 <button className='HomeButt'>Home</button>
                 </Link>
